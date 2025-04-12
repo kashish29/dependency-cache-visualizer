@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dependency-cache-visualizer"
+version = "0.1.0" # Start with an initial version
+description = "A development tool to visualize and interact with a Python dependency-aware cache."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Kashish Garg", email = "gargkashish29@gmail.com" },
+]
+keywords = ["cache", "dependency", "visualization", "development", "debug", "fastapi", "react"]
+classifiers = [
+    "Development Status :: 3 - Alpha", # Start as Alpha/Beta
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+    "Framework :: FastAPI",
+]
+
+# Core dependencies for the backend visualizer server
+dependencies = [
+    "fastapi>=0.95.0,<1.0.0",
+    "uvicorn[standard]>=0.20.0,<1.0.0", # Includes standard dependencies like websockets, httptools
+    "pydantic>=1.10.0,<3.0.0",
+    "aiofiles>=22.1.0", # For serving static files efficiently
+    "python-multipart>=0.0.5", # For potential file uploads if added later, often useful with FastAPI
+    "jinja2>=3.0.0", # Often useful with FastAPI for templating, potentially for serving index.html dynamically
+]
+
+# Optional dependencies could be added here later, e.g., for specific data types
+# [project.optional-dependencies]
+# pandas = ["pandas>=1.5.0"]
+
+[project.urls]
+Homepage = "https://github.com/kashish29/dependency-cache-visualizer" # Replace with actual URL
+Repository = "https://github.com/kashish29/dependency-cache-visualizer"
+# Bug Tracker = "https://github.com/kashish29/dependency-cache-visualizer/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"] # Look for packages in the src directory
+
+[tool.setuptools.package-data]
+# Ensure the built frontend assets are included in the package
+"dependency_cache_visualizer.visualizer" = ["frontend_build/**"]
